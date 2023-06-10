@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: kubernate-elasticsearch-deployment
+spec:
+  selector:
+    matchLabels:
+      app: kubernatelastic-k8-demo
+  replicas: 1 # Number of replicas that will be created for this deployment
+  template:
+    metadata:
+      labels:
+        app: kubernatelastic-k8-demo
+    spec:
+      containers:
+        - name: kubernatelastic-k8-demo
+          image: taregsafi/elasticsearch-k8 # Image that will be used to containers in the cluster
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080 # The port that the container is running on in the cluster
